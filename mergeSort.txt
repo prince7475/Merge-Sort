@@ -1,0 +1,103 @@
+Write a function that takes in an array of integers and returns a sorted version of that array.
+Use the Merge Sort algorithm to sort the array.
+Sample input: [8, 5, 2, 9, 5, 6, 3]
+Sample output: [2, 3, 5, 5, 6, 8, 9]
+
+[8,5,2,9] [5,6,3]
+[8,5] [2,9]
+[8][5]  [2][9]
+
+
+function mergeArr(arr1, arr2){
+  let left = 0
+  let right = 0
+  let newArr = []
+  while(left < arr1.length && right < arr2.length){
+    let leftValue = arr1[left]
+    let rightValue = arr2[right]
+    if(leftValue < rightValue){
+      newArr.push(leftValue)
+      left++
+    }else {
+      newArr.push(rightValue)
+      right++
+    }
+  }
+  
+  while(left < arr1.length){
+    newArr.push(arr1[left])
+    left++
+  }
+  
+  while(right < arr2.length){
+    newArr.push(arr2[right])
+    right++
+  }
+  return newArr;
+}
+
+function splitArr(array){
+if(array.length === 1) return array
+let mid = Math.floor(array.length / 2)
+  return mergeArr(splitArr(array.slice(0,mid)), splitArr(array.splice(mid, array.length)))
+}
+
+
+
+
+
+
+
+
+
+
+Time -> O(N * log(N))
+Space -> O(N* log(n))
+function mergeSort(array){
+  if(array.length === 1) return array
+  let mid = Math.floor(array.length / 2)
+  return mergeArr(mergeSort(array.slice(0,mid)), mergeSort(array.slice(mid))) 
+}
+
+
+function mergeArr(arr1,arr2){
+  let left = 0; 
+  let right = 0
+  let newArr = []
+  while(left < arr1.length && right < arr2.length){
+    let leftValue = arr1[left]
+    let rightValue = arr2[right]
+    if(leftValue < rightValue){
+      newArr.push(leftValue)
+      left++
+    }else {
+      newArr.push(rightValue)
+      right++
+    }
+  }
+  
+  while(left < arr1.length){
+    newArr.push(arr1[left])
+    left++
+  }
+  
+  while(right < arr2.length){
+    newArr.push(arr2[right])
+    right++
+  }
+  return newArr
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
